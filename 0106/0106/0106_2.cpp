@@ -120,6 +120,15 @@ void del(N* root, int data) {
         }
         // 1.while문을 수행한 경우(1회이상): 찾은 노드의 부모노드(왼쪽 연결부)
         // 2.while문을 단한번도 수행하지않은 경우: 찾은 노드의 부모노드(오른쪽 연결부)
+        if (c == subp) {
+            // 2번 경우
+            c->right = subc->right;
+        }
+        else {
+            // 1번 경우
+            subp->left = subc->right;
+        }
+        c->data = subc->data;
     }
     printf("%d 삭제완료!\n\n", data);
 }
