@@ -1,16 +1,21 @@
-//버블 정렬 sorting: 01 12 23 34 ... 01 12 23 34
+//선택 정렬 sorting: 제일 작은애를 찾아서 바꾸고, 그다음 진행
 #include<stdio.h>
 #include<stdlib.h>
-void bubble_sort(int* arr, int len) {
+#include<time.h>
+void selection_sort(int* arr, int len) {
 	// arr == &arr[0]
 	for (int i = 0; i < len; i++) {
-		for (int j = 0; j < len - 1; j++) {
-			if (arr[j] > arr[j + 1]) {
-				int tmp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = tmp;
+		int min = arr[i];
+		int minIndex = i;
+		for (int j = i; j < len; j++) {
+			if (arr[j] < min) {
+				min = arr[j];
+				minIndex = j;
 			}
-		}
+		}// finding minimum value
+		int tmp = arr[minIndex];
+		arr[minIndex] = arr[i];
+		arr[i] = tmp;
 	}
 }
 void main() {
@@ -20,7 +25,7 @@ void main() {
 	//4) 퀵 정렬
 
 	int arr[5];
-
+	srand((unsigned int)time(NULL));
 	for (int i = 0; i < 5; i++) {
 		arr[i] = rand() % 100 + 1;
 	}
@@ -31,7 +36,7 @@ void main() {
 	}
 	printf("\n");
 
-	bubble_sort(arr, 5);
+	selection_sort(arr, 5);
 
 	printf("정렬 후: ");
 	for (int i = 0; i < 5; i++) {
